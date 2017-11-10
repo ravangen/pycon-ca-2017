@@ -5,5 +5,8 @@ A Jupyter notebook with sample code that can be output to a presentation powered
 ## Requirements
 - [Jupyter](http://jupyter.org/install.html): `python3 -m pip install jupyter`
 
-## Generate Presentation Slides
-- `jupyter nbconvert Structured_Logging.ipynb --to slides`
+## Open Notebook
+- `jupyter notebook --ip=127.0.0.1 --port 8888`
+
+## Generate and Serve Slides
+- `jupyter nbconvert Structured_Logging.ipynb  --Exporter.template_file=jupyter_template --to slides --post serve`
