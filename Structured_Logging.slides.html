@@ -11914,6 +11914,35 @@ a.anchor-link {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Rob-Van-Gennip">Rob Van Gennip<a class="anchor-link" href="#Rob-Van-Gennip">&#182;</a></h1><ul>
+<li>Engineering Lead at Wave</li>
+<li>Over 3 years of using Python with Django</li>
+<li>Previously 4 years of C# and native Windows development</li>
+<li>Focus on distributed systems and tooling</li>
+</ul>
+
+</div>
+</div>
+</div></section></section><section><section>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Topics">Topics<a class="anchor-link" href="#Topics">&#182;</a></h1><ul>
+<li>Log Levels</li>
+<li>Logging Classes</li>
+<li>Structured Logging</li>
+<li>Demo </li>
+<li>Questions</li>
+</ul>
+
+</div>
+</div>
+</div></section></section><section><section>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
 <h1 id="Log-Levels">Log Levels<a class="anchor-link" href="#Log-Levels">&#182;</a></h1><ul>
 <li>Debug</li>
 <li>Info</li>
@@ -11974,7 +12003,7 @@ a.anchor-link {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Core-Logging-Classes">Core Logging Classes<a class="anchor-link" href="#Core-Logging-Classes">&#182;</a></h1><ul>
+<h1 id="Logging-Classes">Logging Classes<a class="anchor-link" href="#Logging-Classes">&#182;</a></h1><ul>
 <li>Loggers</li>
 <li>Handlers</li>
 <li>Filters</li>
@@ -12050,7 +12079,7 @@ a.anchor-link {
 
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>2017-11-11 12:08:31,659 - INFO - root - Hello PyCon Canada!
+<pre>2017-11-11 17:35:11,618 - INFO - root - Hello PyCon Canada!
 </pre>
 </div>
 </div>
@@ -12083,7 +12112,7 @@ a.anchor-link {
 
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>2017-11-11 12:08:31,669 - INFO - foo.bar - Hello PyCon Canada!
+<pre>2017-11-11 17:35:11,628 - INFO - foo.bar - Hello PyCon Canada!
 </pre>
 </div>
 </div>
@@ -12100,7 +12129,7 @@ a.anchor-link {
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Use __name__ to get the fully-qualified name of the module</span>
 <span class="c1"># __name__ is &#39;__main__&#39; in an interactive prompt, script, or standard input</span>
 
-<span class="n">auto_named_logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+<span class="n">auto_named_logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>  <span class="c1"># recommended</span>
 
 <span class="n">auto_named_logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39;Hello PyCon Canada!&#39;</span><span class="p">)</span>
 </pre></div>
@@ -12119,7 +12148,7 @@ a.anchor-link {
 
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>2017-11-11 12:08:31,677 - INFO - __main__ - Hello PyCon Canada!
+<pre>2017-11-11 17:35:11,641 - INFO - __main__ - Hello PyCon Canada!
 </pre>
 </div>
 </div>
@@ -12151,25 +12180,63 @@ a.anchor-link {
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Filter">Filter<a class="anchor-link" href="#Filter">&#182;</a></h2><ul>
 <li>Fine grained mechanism for determining which log records to output</li>
+<li>Returns a true value if the record is to be processed</li>
 </ul>
 
 </div>
 </div>
-</div></section><section>
+</div><div class="fragment">
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[6]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">TESTING</span> <span class="o">=</span> <span class="kc">True</span>
+
+
+<span class="k">class</span> <span class="nc">NotInTestingFilter</span><span class="p">(</span><span class="n">logging</span><span class="o">.</span><span class="n">Filter</span><span class="p">):</span>
+
+    <span class="k">def</span> <span class="nf">filter</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">record</span><span class="p">):</span>
+        <span class="k">return</span> <span class="ow">not</span> <span class="n">TESTING</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div></div></section><section>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Formatter">Formatter<a class="anchor-link" href="#Formatter">&#182;</a></h2><ul>
 <li>Specify how content of log records are transformed for output</li>
+<li>Format should at least include current time, level, name, and message</li>
 </ul>
 
 </div>
 </div>
-</div></section><section>
+</div><div class="fragment">
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="JSON-Formatter">JSON Formatter<a class="anchor-link" href="#JSON-Formatter">&#182;</a></h4><ul>
+<li>Output each record as JSON object<ul>
+<li>Includes each format string argument as key/value</li>
+<li>Merge <code>extra</code> dict into output object</li>
+</ul>
+</li>
+<li>Conveniently machine parsable</li>
+<li>Stop writing custom parsers for syslog type records</li>
+</ul>
+
+</div>
+</div>
+</div></div></section><section>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[6]:</div>
+<div class="prompt input_prompt">In&nbsp;[8]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">server_logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="s1">&#39;server&#39;</span><span class="p">)</span>
@@ -12184,7 +12251,7 @@ a.anchor-link {
 
 <span class="n">data</span> <span class="o">=</span> <span class="p">{</span>
     <span class="s1">&#39;request_id&#39;</span><span class="p">:</span> <span class="s1">&#39;90fca134-4468-41dc-bb26-4d087d61857b&#39;</span><span class="p">,</span>
-    <span class="s1">&#39;duration&#39;</span><span class="p">:</span> <span class="mi">14</span><span class="p">,</span>  <span class="c1"># not output, not in log_format</span>
+    <span class="s1">&#39;duration&#39;</span><span class="p">:</span> <span class="mi">42</span><span class="p">,</span>  <span class="c1"># not output, not in log_format</span>
 <span class="p">}</span>
 
 <span class="n">server_logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39;User logout&#39;</span><span class="p">,</span> <span class="n">extra</span><span class="o">=</span><span class="n">data</span><span class="p">)</span>
@@ -12207,7 +12274,7 @@ a.anchor-link {
 
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>2017-11-11 12:08:31,702 - INFO - 90fca134-4468-41dc-bb26-4d087d61857b - User logout
+<pre>2017-11-11 17:35:12,497 - INFO - 90fca134-4468-41dc-bb26-4d087d61857b - User logout
 </pre>
 </div>
 </div>
@@ -12216,30 +12283,18 @@ a.anchor-link {
 </div>
 
 </div></section><section>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="JsonFormatter">JsonFormatter<a class="anchor-link" href="#JsonFormatter">&#182;</a></h3><ul>
-<li>Output data as JSON objects</li>
-<li>Stop writing custom parsers for syslog type records</li>
-<li>Easily machine parsable </li>
-<li>For each argument in format string, output as key/value in object</li>
-</ul>
-
-</div>
-</div>
-</div></section><section>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[8]:</div>
+<div class="prompt input_prompt">In&nbsp;[9]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">api_logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="s1">&#39;api&#39;</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">pythonjsonlogger</span> <span class="k">import</span> <span class="n">jsonlogger</span>
+
+<span class="n">api_logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="s1">&#39;api&#39;</span><span class="p">)</span>
 <span class="n">api_logger</span><span class="o">.</span><span class="n">propagate</span> <span class="o">=</span> <span class="kc">False</span>  <span class="c1"># do not propagate messages up logger hierarchy</span>
 
-<span class="n">log_format</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">%(asctime)s</span><span class="s1"> </span><span class="si">%(levelname)s</span><span class="s1"> </span><span class="si">%(message)s</span><span class="s1">&#39;</span>
-<span class="n">formatter</span> <span class="o">=</span> <span class="n">JsonDataFormatter</span><span class="p">(</span><span class="n">log_format</span><span class="p">)</span>
+<span class="n">log_format</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">%(asctime)s</span><span class="s1"> </span><span class="si">%(levelname)s</span><span class="s1"> </span><span class="si">%(message)s</span><span class="s1">&#39;</span>  <span class="c1"># only standard attributes</span>
+<span class="n">formatter</span> <span class="o">=</span> <span class="n">jsonlogger</span><span class="o">.</span><span class="n">JsonFormatter</span><span class="p">(</span><span class="n">log_format</span><span class="p">)</span>
 
 <span class="n">handler</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">StreamHandler</span><span class="p">(</span><span class="n">stream</span><span class="o">=</span><span class="n">sys</span><span class="o">.</span><span class="n">stdout</span><span class="p">)</span>
 <span class="n">handler</span><span class="o">.</span><span class="n">setFormatter</span><span class="p">(</span><span class="n">formatter</span><span class="p">)</span>
@@ -12248,7 +12303,7 @@ a.anchor-link {
 <span class="n">data</span> <span class="o">=</span> <span class="p">{</span>
     <span class="c1"># output despite not in log_format</span>
     <span class="s1">&#39;request_id&#39;</span><span class="p">:</span> <span class="s1">&#39;90fca134-4468-41dc-bb26-4d087d61857b&#39;</span><span class="p">,</span>
-    <span class="s1">&#39;duration&#39;</span><span class="p">:</span> <span class="mi">14</span><span class="p">,</span>
+    <span class="s1">&#39;duration&#39;</span><span class="p">:</span> <span class="mi">42</span><span class="p">,</span>
 <span class="p">}</span>
 
 <span class="n">api_logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39;User logout&#39;</span><span class="p">,</span> <span class="n">extra</span><span class="o">=</span><span class="n">data</span><span class="p">)</span>
@@ -12268,7 +12323,7 @@ a.anchor-link {
 
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>{&#34;asctime&#34;: &#34;2017-11-11 12:08:32,099&#34;, &#34;levelname&#34;: &#34;INFO&#34;, &#34;message&#34;: &#34;User logout&#34;, &#34;request_id&#34;: &#34;90fca134-4468-41dc-bb26-4d087d61857b&#34;, &#34;user&#34;: &#34;ravangen&#34;, &#34;duration&#34;: 14}
+<pre>{&#34;asctime&#34;: &#34;2017-11-11 17:35:12,522&#34;, &#34;levelname&#34;: &#34;INFO&#34;, &#34;message&#34;: &#34;User logout&#34;, &#34;request_id&#34;: &#34;90fca134-4468-41dc-bb26-4d087d61857b&#34;, &#34;duration&#34;: 14}
 </pre>
 </div>
 </div>
@@ -12276,6 +12331,30 @@ a.anchor-link {
 </div>
 </div>
 
+</div></section></section><section><section>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Structured-Logging">Structured Logging<a class="anchor-link" href="#Structured-Logging">&#182;</a></h1>
+</div>
+</div>
+</div></section></section><section><section>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Demo">Demo<a class="anchor-link" href="#Demo">&#182;</a></h1>
+</div>
+</div>
+</div></section></section><section><section>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Questions">Questions<a class="anchor-link" href="#Questions">&#182;</a></h1>
+</div>
+</div>
 </div></section></section>
 </div>
 </div>
