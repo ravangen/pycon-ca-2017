@@ -9,4 +9,4 @@ A Jupyter notebook with sample code that can be output to a presentation powered
 - `jupyter notebook --ip=127.0.0.1 --port 8888`
 
 ## Generate and Serve Slides
-- `jupyter nbconvert Structured_Logging.ipynb  --Exporter.template_file=jupyter_template --to slides --post serve`
+- `jupyter nbconvert Structured_Logging.ipynb  --template=jupyter_template.tpl --to slides --post serve`

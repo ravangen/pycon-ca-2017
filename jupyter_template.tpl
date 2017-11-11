@@ -19,11 +19,11 @@ require(
             progress: true,
             history: true,
             transition: "{{resources.reveal.transition}}",
-            width: 1920,
-	          height: 1080,
+            width: 960,
+            height: 540,
             margin: 0,
             minScale: 0.5,
-            maxScale: 1,
+            maxScale: 2,
             // Optional libraries used to extend on reveal.js
             dependencies: [
                 { src: "{{resources.reveal.url_prefix}}/lib/js/classList.js",
