@@ -8,5 +8,13 @@ A Jupyter notebook with sample code that can be output to a presentation powered
 ## Open Notebook
 - `jupyter notebook --ip=127.0.0.1 --port 8888`
 
-## Generate and Serve Slides
-- `jupyter nbconvert Structured_Logging.ipynb  --template=jupyter_template.tpl --to slides --post serve`
+## Presentation
+### Requirements
+- `cp custom.css reveal.js/custom.css`
+- `cd reveal.js`
+- `npm install`
+
+### Generate Slides
+- `npm run start`
+- `jupyter nbconvert Structured_Logging.ipynb --template=jupyter_template.tpl --to slides --reveal-prefix='' --output-dir='./reveal.js'`
+- `open http://localhost:8000/Structured_Logging.slides.html`
