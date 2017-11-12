@@ -22,7 +22,7 @@ require(
             width: 960,
             height: 540,
             margin: 0,
-            minScale: 0.5,
+            minScale: 0.2,
             maxScale: 2,
             // Optional libraries used to extend on reveal.js
             dependencies: [
