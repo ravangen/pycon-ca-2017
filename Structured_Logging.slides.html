@@ -15,8 +15,8 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
 
 <!-- General and theme style sheets -->
-<link rel="stylesheet" href="reveal.js/css/reveal.css">
-<link rel="stylesheet" href="reveal.js/css/theme/simple.css" id="theme">
+<link rel="stylesheet" href="/css/reveal.css">
+<link rel="stylesheet" href="/css/theme/simple.css" id="theme">
 
 <!-- If the query includes 'print-pdf', include the PDF print sheet -->
 <script>
@@ -24,14 +24,14 @@ if( window.location.search.match( /print-pdf/gi ) ) {
         var link = document.createElement( 'link' );
         link.rel = 'stylesheet';
         link.type = 'text/css';
-        link.href = 'reveal.js/css/print/pdf.css';
+        link.href = '/css/print/pdf.css';
         document.getElementsByTagName( 'head' )[0].appendChild( link );
 }
 
 </script>
 
 <!--[if lt IE 9]>
-<script src="reveal.js/lib/js/html5shiv.js"></script>
+<script src="/lib/js/html5shiv.js"></script>
 <![endif]-->
 
 <!-- Loading the mathjax macro -->
@@ -12079,7 +12079,7 @@ a.anchor-link {
 
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>2017-11-11 17:35:11,618 - INFO - root - Hello PyCon Canada!
+<pre>2017-11-11 18:24:05,247 - INFO - root - Hello PyCon Canada!
 </pre>
 </div>
 </div>
@@ -12112,7 +12112,7 @@ a.anchor-link {
 
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>2017-11-11 17:35:11,628 - INFO - foo.bar - Hello PyCon Canada!
+<pre>2017-11-11 18:24:05,264 - INFO - foo.bar - Hello PyCon Canada!
 </pre>
 </div>
 </div>
@@ -12148,7 +12148,7 @@ a.anchor-link {
 
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>2017-11-11 17:35:11,641 - INFO - __main__ - Hello PyCon Canada!
+<pre>2017-11-11 18:24:05,275 - INFO - __main__ - Hello PyCon Canada!
 </pre>
 </div>
 </div>
@@ -12274,7 +12274,7 @@ a.anchor-link {
 
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>2017-11-11 17:35:12,497 - INFO - 90fca134-4468-41dc-bb26-4d087d61857b - User logout
+<pre>2017-11-11 18:24:06,088 - INFO - 90fca134-4468-41dc-bb26-4d087d61857b - User logout
 </pre>
 </div>
 </div>
@@ -12323,7 +12323,7 @@ a.anchor-link {
 
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>{&#34;asctime&#34;: &#34;2017-11-11 17:35:12,522&#34;, &#34;levelname&#34;: &#34;INFO&#34;, &#34;message&#34;: &#34;User logout&#34;, &#34;request_id&#34;: &#34;90fca134-4468-41dc-bb26-4d087d61857b&#34;, &#34;duration&#34;: 14}
+<pre>{&#34;asctime&#34;: &#34;2017-11-11 18:24:06,111&#34;, &#34;levelname&#34;: &#34;INFO&#34;, &#34;message&#34;: &#34;User logout&#34;, &#34;request_id&#34;: &#34;90fca134-4468-41dc-bb26-4d087d61857b&#34;, &#34;duration&#34;: 42}
 </pre>
 </div>
 </div>
@@ -12336,10 +12336,36 @@ a.anchor-link {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Structured-Logging">Structured Logging<a class="anchor-link" href="#Structured-Logging">&#182;</a></h1>
+<h1 id="Structured-Logging">Structured Logging<a class="anchor-link" href="#Structured-Logging">&#182;</a></h1><ul>
+<li>A way of recording key/value pairs</li>
+<li>Output is readable by humans and computers (easy to query)</li>
+<li>Include a human readable message with every log</li>
+<li>Build context around operations with <code>extra</code> parameter</li>
+<li>Eliminate any guesswork, let tools format and adapt to the data</li>
+<li>Not specific to JSON, logfmt example:
+<pre><code>level=info msg="Stopping all fetchers"
+  tag=stopping_fetchers id=ConsumerFetcherManager-1382721708341
+  module=kafka.consumer.ConsumerFetcherManager</code></pre>
+</li>
+</ul>
+
 </div>
 </div>
-</div></section></section><section><section>
+</div><aside class="notes">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<ul>
+<li>Trying to figure out why an exception happened is infinitely easier if you know more details about who the user was, input parameters, etc</li>
+<li>When using a log management system that supports searching by these custom fields, then search becomes easy</li>
+</ul>
+
+</div>
+</div>
+</div>
+</aside></section></section><section><section>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
@@ -12367,8 +12393,8 @@ require(
       waitSeconds: 15
     },
     [
-      "reveal.js/lib/js/head.min.js",
-      "reveal.js/js/reveal.js"
+      "/lib/js/head.min.js",
+      "/js/reveal.js"
     ],
     function(head, Reveal){
         // Full list of configuration options available here: https://github.com/hakimel/reveal.js#configuration
@@ -12384,11 +12410,11 @@ require(
             maxScale: 2,
             // Optional libraries used to extend on reveal.js
             dependencies: [
-                { src: "reveal.js/lib/js/classList.js",
+                { src: "/lib/js/classList.js",
                   condition: function() { return !document.body.classList; } },
-                { src: "reveal.js/plugin/notes/notes.js",
+                { src: "/plugin/notes/notes.js",
                   async: true,
-                  condition: function() { return !!document.body.classList; } }
+                  condition: function() { return !!document.body.classList; } },
             ]
         });
         var update = function(event){
