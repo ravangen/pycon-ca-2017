@@ -15,6 +15,9 @@ A Jupyter notebook with sample code that can be output to a presentation powered
 - `npm install`
 
 ### Generate Slides
-- `npm run start`
 - `jupyter nbconvert Structured_Logging.ipynb --template=jupyter_template.tpl --to slides --reveal-prefix='' --output-dir='./reveal.js'`
+
+### Run Notes Server
+- `cd reveal.js`
+- `npm run start`
 - `open http://localhost:8000/Structured_Logging.slides.html`
